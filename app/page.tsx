@@ -1021,8 +1021,8 @@ function SiteFooter() {
 
         {/* Bottom row */}
         <div className="mt-20 flex flex-col items-start gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-2 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
-            <AionisLogo className="h-16 w-auto" />
+          <span className="flex items-center gap-0 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
+            <AionisLogo className="-mr-5 h-16 w-auto" />
             Aionis
           </span>
 

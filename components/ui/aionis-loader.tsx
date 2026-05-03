@@ -35,8 +35,8 @@ export function AionisLoader() {
       }}
       aria-hidden={fadingOut}
     >
-      <div className="flex items-center gap-2 sm:gap-3">
-        <AionisLogo className="h-24 w-auto sm:h-40" priority />
+      <div className="flex items-center gap-0">
+        <AionisLogo className="-mr-8 h-24 w-auto sm:-mr-14 sm:h-40" priority />
         <Shuffle
           text="AIONIS"
           tag="h1"
