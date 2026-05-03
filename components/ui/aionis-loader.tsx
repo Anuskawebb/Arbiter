@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Shuffle from "./shuffle";
+import { AionisLogo } from "./aionis-logo";
 
 export function AionisLoader() {
   const [fadingOut, setFadingOut] = useState(false);
@@ -34,20 +35,23 @@ export function AionisLoader() {
       }}
       aria-hidden={fadingOut}
     >
-      <Shuffle
-        text="AIONIS"
-        tag="h1"
-        shuffleDirection="right"
-        duration={0.45}
-        shuffleTimes={2}
-        ease="power3.out"
-        stagger={0.06}
-        triggerOnHover={false}
-        className="text-4xl font-bold tracking-[0.06em] text-black sm:text-6xl [font-family:var(--font-silkscreen)]"
-        onShuffleComplete={() => {
-          window.setTimeout(() => setFadingOut(true), 600);
-        }}
-      />
+      <div className="flex items-center gap-0">
+        <AionisLogo className="-mx-10 h-24 w-auto sm:-mx-16 sm:h-40" priority />
+        <Shuffle
+          text="AIONIS"
+          tag="h1"
+          shuffleDirection="right"
+          duration={0.45}
+          shuffleTimes={2}
+          ease="power3.out"
+          stagger={0.06}
+          triggerOnHover={false}
+          className="text-4xl font-bold tracking-[0.06em] text-black sm:text-6xl [font-family:var(--font-silkscreen)]"
+          onShuffleComplete={() => {
+            window.setTimeout(() => setFadingOut(true), 600);
+          }}
+        />
+      </div>
     </div>
   );
 }

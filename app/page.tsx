@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Hash, Receipt, Wallet, Zap, RefreshCcw, Scale, CircleSlash, Hourglass, Flame, Coins, Timer } from "lucide-react";
 import { AionisLoader } from "@/components/ui/aionis-loader";
+import { AionisLogo } from "@/components/ui/aionis-logo";
 import { Card, CardContent } from "@/components/ui/card";
 import { CTAMarqueeSection } from "@/components/ui/cta-marquee";
 import { FAQItem } from "@/components/ui/faq-item";
@@ -154,7 +155,7 @@ function WhyAgentsBurnCapitalSection() {
         </div>
       </div>
 
-      <div className="relative px-6 pb-20 pt-6 sm:px-12 sm:pb-24">
+      <div className="relative px-3 pb-20 pt-6 sm:px-12 sm:pb-24">
         <div className="mx-auto max-w-3xl lg:max-w-5xl">
           <div className="relative">
             <div className="relative z-10 grid grid-cols-6 gap-3">
@@ -644,7 +645,7 @@ function WhySolanaSection() {
         </div>
       </div>
 
-      <div className="relative px-6 pb-20 pt-6 sm:px-12 sm:pb-24">
+      <div className="relative px-3 pb-20 pt-6 sm:px-12 sm:pb-24">
         <div className="mx-auto max-w-3xl lg:max-w-5xl">
           <div className="relative">
             <div className="relative z-10 grid grid-cols-6 gap-3">
@@ -916,9 +917,12 @@ function Navbar() {
   const links = ["Product", "Resources", "How it works"];
   return (
     <header className="relative z-20 flex items-center justify-between py-6">
-      <span className="text-[20px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
-        Aionis
-      </span>
+      <a href="#" className="flex items-center gap-0 text-black">
+        <AionisLogo className="-mx-10 h-24 w-auto" priority />
+        <span className="text-[20px] font-bold uppercase tracking-[0.06em] [font-family:var(--font-silkscreen)]">
+          Aionis
+        </span>
+      </a>
 
       <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 text-[14px] text-zinc-700 sm:flex">
         {links.map((label) => (
@@ -1020,8 +1024,8 @@ function SiteFooter() {
 
         {/* Bottom row */}
         <div className="mt-20 flex flex-col items-start gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-2 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
-            <AionisSpark className="h-4 w-4 text-amber-500" />
+          <span className="flex items-center gap-0 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
+            <AionisLogo className="-mx-8 h-20 w-auto" />
             Aionis
           </span>
 
