@@ -53,7 +53,9 @@ const LAYERS: Layer[] = [
   },
 ];
 
-export function ArbiterStack() {
+const ACCENT_RGB = "245, 158, 11"; // amber-500 — single brand accent
+
+export function AionisStack() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const activeRef = useRef(active);
@@ -94,7 +96,7 @@ export function ArbiterStack() {
                   aria-hidden
                   animate={{
                     backgroundColor: isActive
-                      ? "rgb(59 130 246)"
+                      ? `rgb(${ACCENT_RGB})`
                       : "rgb(161 161 170 / 0.7)",
                     height: isActive ? 2 : 1,
                   }}
@@ -105,12 +107,12 @@ export function ArbiterStack() {
                   aria-hidden
                   animate={{
                     backgroundColor: isActive
-                      ? "rgb(59 130 246)"
+                      ? `rgb(${ACCENT_RGB})`
                       : "rgb(212 212 216)",
-                    scale: isActive ? 1.6 : 1,
+                    scale: isActive ? 1.4 : 1,
                   }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="-ml-3 block h-1.5 w-1.5 rounded-full"
+                  className="-ml-3 block h-2.5 w-2.5 rounded-full"
                 />
               </button>
             </li>
@@ -118,7 +120,7 @@ export function ArbiterStack() {
         })}
       </ul>
 
-      <ArbiterIsoStack activeIndex={active} onHover={setActive} />
+      <AionisIsoStack activeIndex={active} onHover={setActive} />
 
       <div className="flex flex-col gap-9 text-left sm:gap-12">
         <AnimatePresence mode="wait">
@@ -137,7 +139,7 @@ export function ArbiterStack() {
               >
                 <span
                   aria-hidden
-                  className="-mr-3 block h-1.5 w-1.5 rounded-full bg-blue-500"
+                  className="-mr-3 block h-2.5 w-2.5 rounded-full bg-amber-500"
                 />
                 <span
                   aria-hidden
@@ -153,7 +155,7 @@ export function ArbiterStack() {
   );
 }
 
-function ArbiterIsoStack({
+function AionisIsoStack({
   activeIndex,
   onHover,
 }: {
@@ -171,7 +173,6 @@ function ArbiterIsoStack({
         }}
       >
         {[0, 1, 2, 3, 4].map((j) => {
-          // j=0 is bottom card (Solana), j=4 is top card (Dashboard).
           const layerIdx = 4 - j;
           const isActive = layerIdx === activeIndex;
           const isAbove = layerIdx < activeIndex;
@@ -184,14 +185,14 @@ function ArbiterIsoStack({
               key={j}
               onMouseEnter={() => onHover(layerIdx)}
               className={`absolute inset-0 cursor-pointer rounded-[32px] border-2 bg-white ${
-                isActive ? "border-blue-500" : "border-zinc-300/70"
+                isActive ? "border-amber-500" : "border-zinc-300/70"
               }`}
               style={{
                 transform: `translateZ(${z}px)`,
                 opacity: isAbove ? 0.18 : 1,
                 transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease, border-color 0.4s ease, box-shadow 0.5s ease",
                 boxShadow: isActive
-                  ? "0 32px 64px -20px rgba(37, 99, 235, 0.35)"
+                  ? `0 32px 64px -20px rgba(${ACCENT_RGB}, 0.35)`
                   : "0 14px 28px -18px rgba(15, 30, 60, 0.12)",
               }}
             >
@@ -226,8 +227,9 @@ function LayerMock({ layerIndex }: { layerIndex: number }) {
 }
 
 function DashboardMock() {
+  const bars = [22, 30, 26, 38, 34, 48, 42, 58, 50, 66, 60, 78];
   return (
-    <div className="flex h-full flex-col gap-2.5">
+    <div className="flex h-full flex-col gap-2">
       <div className="flex items-center justify-between">
         <div className="flex gap-1">
           <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
@@ -235,22 +237,35 @@ function DashboardMock() {
           <span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />
         </div>
         <div className="flex items-center gap-1">
-          <span className="h-2.5 w-2.5 rounded-sm bg-blue-100" />
-          <span className="h-2.5 w-2.5 rounded-sm bg-blue-100" />
-          <span className="h-2.5 w-2.5 rounded-sm bg-blue-100" />
+          <span className="block size-1 rounded-full bg-amber-500" />
+          <span className="text-[7px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+            Live
+          </span>
         </div>
       </div>
-      <div className="grid flex-1 grid-cols-3 gap-2.5">
-        <div className="flex flex-col gap-1.5">
-          <div className="rounded-md bg-blue-100 px-2 py-1.5 text-[10px] font-bold leading-none text-zinc-800">
-            $1,247
-          </div>
-          <div className="h-5 rounded-md bg-zinc-100" />
-          <div className="h-1.5 w-3/4 rounded-full bg-zinc-200" />
-          <div className="h-1.5 w-2/3 rounded-full bg-zinc-200" />
-          <div className="h-1.5 w-1/2 rounded-full bg-zinc-200" />
-        </div>
-        <div className="col-span-2 rounded-md bg-blue-50/80" />
+
+      <div className="flex items-baseline gap-1.5">
+        <span className="text-[15px] font-bold leading-none text-zinc-900">
+          +$2,847
+        </span>
+        <span className="text-[8px] font-medium text-amber-600">net today</span>
+      </div>
+
+      <div className="flex flex-1 items-end gap-[3px]">
+        {bars.map((h, i) => (
+          <div
+            key={i}
+            className={`flex-1 rounded-t ${
+              i >= bars.length - 3 ? "bg-amber-500" : "bg-amber-300/70"
+            }`}
+            style={{ height: `${h}%` }}
+          />
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-1.5">
+        <span className="text-[8px] font-semibold text-zinc-700">3 agents</span>
+        <span className="text-[8px] text-zinc-500">cap $100/d</span>
       </div>
     </div>
   );
@@ -258,28 +273,34 @@ function DashboardMock() {
 
 function AgentsMock() {
   const agents = [
-    { code: "A7", tone: "bg-violet-100 text-violet-700", label: "Cache trader" },
-    { code: "B2", tone: "bg-emerald-100 text-emerald-700", label: "Bounty solver" },
-    { code: "K9", tone: "bg-amber-100 text-amber-700", label: "Data router" },
+    { code: "K9", label: "Cache trader", spend: "$0.42" },
+    { code: "B2", label: "Bounty solver", spend: "$2.18" },
+    { code: "A7", label: "Data router", spend: "$1.07" },
   ];
   return (
     <div className="flex h-full flex-col gap-2">
-      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">
-        Active agents
+      <div className="flex items-center justify-between">
+        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+          Active agents
+        </span>
+        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.16em] text-amber-700">
+          {agents.length} live
+        </span>
       </div>
-      <div className="flex flex-1 flex-col justify-center gap-2">
+      <div className="flex flex-1 flex-col justify-center gap-1.5">
         {agents.map((a) => (
           <div
             key={a.code}
-            className="flex items-center gap-2 rounded-md bg-zinc-50 px-2 py-1.5"
+            className="flex items-center gap-2 rounded-md border border-zinc-100 bg-zinc-50/70 px-2 py-1.5"
           >
-            <span
-              className={`flex h-6 w-6 items-center justify-center rounded-full text-[9px] font-bold ${a.tone}`}
-            >
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-[9px] font-bold text-amber-800">
               {a.code}
             </span>
-            <span className="flex-1 text-[10px] text-zinc-700">{a.label}</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="flex-1 text-[10px] font-medium text-zinc-800">
+              {a.label}
+            </span>
+            <span className="font-mono text-[9px] text-zinc-500">{a.spend}</span>
+            <span className="block size-1 rounded-full bg-amber-500" />
           </div>
         ))}
       </div>
@@ -288,57 +309,72 @@ function AgentsMock() {
 }
 
 function ProfitFilterMock() {
+  const bars = [
+    { h: 28, ok: false, cost: 4.2, reward: 0.7 },
+    { h: 38, ok: false, cost: 1.1, reward: 0.3 },
+    { h: 50, ok: true, cost: 0.8, reward: 1.4 },
+    { h: 64, ok: true, cost: 1.2, reward: 2.6 },
+    { h: 44, ok: false, cost: 2.0, reward: 1.8 },
+    { h: 78, ok: true, cost: 0.5, reward: 1.9 },
+    { h: 56, ok: true, cost: 0.9, reward: 1.6 },
+  ];
   return (
     <div className="flex h-full flex-col gap-2">
       <div className="flex items-center justify-between">
-        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">
           Margin filter
         </span>
-        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-bold text-emerald-700">
-          ≥ 18%
+        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.16em] text-amber-700">
+          ≥ 18% only
         </span>
       </div>
-      <div className="flex flex-1 items-end gap-1.5">
-        {[
-          { h: 28, ok: false },
-          { h: 38, ok: false },
-          { h: 50, ok: true },
-          { h: 64, ok: true },
-          { h: 44, ok: false },
-          { h: 78, ok: true },
-          { h: 56, ok: true },
-        ].map((b, i) => (
+      <div className="relative flex flex-1 items-end gap-1.5">
+        <div className="absolute left-0 right-0 border-t border-dashed border-amber-400/60" style={{ bottom: "44%" }} />
+        {bars.map((b, i) => (
           <div
             key={i}
-            className={`flex-1 rounded-t ${b.ok ? "bg-emerald-400" : "bg-rose-300"}`}
+            className={`flex-1 rounded-t ${
+              b.ok ? "bg-amber-500" : "bg-zinc-200"
+            }`}
             style={{ height: `${b.h}%` }}
           />
         ))}
+      </div>
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-1">
+        <span className="text-[8px] text-zinc-500">4 accepted</span>
+        <span className="text-[8px] text-zinc-400">3 pruned</span>
       </div>
     </div>
   );
 }
 
 function CacheMock() {
-  const cells = Array.from({ length: 18 });
+  const cells = Array.from({ length: 24 });
+  const hits = new Set([0, 2, 3, 6, 7, 9, 11, 14, 16, 18, 20, 21]);
   return (
     <div className="flex h-full flex-col gap-2">
       <div className="flex items-center justify-between">
-        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">
           Cache hits
         </span>
-        <span className="text-[10px] font-bold text-zinc-800">142</span>
+        <div className="flex items-baseline gap-1">
+          <span className="text-[12px] font-bold leading-none text-zinc-900">
+            142
+          </span>
+          <span className="text-[8px] font-medium text-amber-600">today</span>
+        </div>
       </div>
-      <div className="grid flex-1 grid-cols-6 gap-1">
-        {cells.map((_, i) => {
-          const hit = [0, 2, 3, 6, 7, 9, 11, 14, 16].includes(i);
-          return (
-            <div
-              key={i}
-              className={`rounded-sm ${hit ? "bg-blue-400" : "bg-zinc-100"}`}
-            />
-          );
-        })}
+      <div className="grid flex-1 grid-cols-8 gap-[3px]">
+        {cells.map((_, i) => (
+          <div
+            key={i}
+            className={`rounded-sm ${hits.has(i) ? "bg-amber-500" : "bg-zinc-100"}`}
+          />
+        ))}
+      </div>
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-1">
+        <span className="text-[8px] text-zinc-500">hit rate</span>
+        <span className="text-[8px] font-bold text-zinc-700">50%</span>
       </div>
     </div>
   );
@@ -346,24 +382,37 @@ function CacheMock() {
 
 function SolanaMock() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-3">
-      <div className="flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1.5">
-        <span className="h-2 w-2 rounded-full bg-emerald-500" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">
-          USDC settled
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex items-center justify-between">
+        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-500">
+          Solana settlement
+        </span>
+        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.16em] text-amber-700">
+          USDC
         </span>
       </div>
-      <div className="flex items-center gap-1.5 text-[10px] text-zinc-600">
-        <span className="font-bold text-zinc-900">$0.00025</span>
-        <span>per tx</span>
+
+      <div className="flex flex-1 flex-col items-start justify-center gap-2">
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[16px] font-bold leading-none text-zinc-900">
+            $0.00025
+          </span>
+          <span className="text-[8px] font-medium text-zinc-500">per tx</span>
+        </div>
+        <div className="flex items-end gap-1">
+          {[40, 60, 35, 80, 50, 70, 45].map((h, i) => (
+            <span
+              key={i}
+              className="block w-1 rounded-full bg-amber-400"
+              style={{ height: `${h * 0.18}px` }}
+            />
+          ))}
+        </div>
       </div>
-      <div className="flex gap-1.5">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <span
-            key={i}
-            className="h-6 w-1.5 rounded-full bg-gradient-to-b from-violet-400 to-emerald-400"
-          />
-        ))}
+
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-1">
+        <span className="text-[8px] text-zinc-500">throughput</span>
+        <span className="text-[8px] font-bold text-zinc-700">3,128 tx/s</span>
       </div>
     </div>
   );

@@ -21,21 +21,9 @@ export function ProfitCalculator() {
   }, [netGain]);
 
   return (
-    <section className="relative bg-white px-6 py-20 font-mono sm:px-12 sm:py-24">
-      <div className="mx-auto max-w-4xl text-center">
-        {/* Headline - Matched with Hero */}
-        <h2 className="font-medium leading-[1.05] tracking-tight text-black text-[clamp(2rem,4.75vw,4.25rem)]">
-          Set your limits.
-        </h2>
-
-        {/* Subtext - Small & Gray */}
-        <p className="mx-auto mt-6 max-w-2xl text-[14px] font-medium leading-relaxed text-[#888888]">
-          Arbiter agents evaluate every action before execution, ensuring expected value exceeds cost.
-          Stay in control while your agent optimizes for profit.
-        </p>
-
+    <div className="mx-auto max-w-4xl font-mono text-center">
         {/* Main Value Box Container - The Focus Box */}
-        <div className="relative mt-10 flex flex-col items-center">
+        <div className="relative flex flex-col items-center">
           {/* Corner Brackets - Blockier & Lighter */}
           <div className="absolute left-1/2 top-1/2 z-0 h-[160px] w-[360px] -translate-x-1/2 -translate-y-1/2 opacity-40">
              {/* Top Left */}
@@ -67,7 +55,7 @@ export function ProfitCalculator() {
         <div className="mx-auto mt-6 max-w-lg">
            <div className="relative mb-14 flex h-8 items-center justify-center">
               <div 
-                className="absolute rounded-full bg-blue-600 px-4 py-1.5 text-[11px] font-bold text-white shadow-md transition-all duration-200"
+                className="absolute rounded-full bg-black px-4 py-1.5 text-[11px] font-bold text-white shadow-md transition-all duration-200"
                 style={{ 
                     left: `calc(${(spendLimit - 1) / 24 * 100}% - 32px)`,
                     bottom: '0px'
@@ -91,7 +79,6 @@ export function ProfitCalculator() {
         </div>
 
       </div>
-    </section>
   );
 }
 

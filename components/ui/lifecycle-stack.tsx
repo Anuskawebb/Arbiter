@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArbiterSpark } from "@/app/page";
+import { AionisSpark } from "@/app/page";
 
 const AUTO_CYCLE_MS = 2800;
 
@@ -145,7 +145,7 @@ export function LifecycleStack() {
                           {LAYERS[layerIdx].label}
                         </span>
                       </div>
-                      <ArbiterSpark className="h-3 w-3 text-zinc-300" />
+                      <AionisSpark className="h-3 w-3 text-zinc-300" />
                     </div>
                     
                     <div className="flex-1 rounded-2xl bg-zinc-50/50 p-4 ring-1 ring-zinc-100/50">

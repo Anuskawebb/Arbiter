@@ -25,8 +25,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Arbiter",
-  description: "Arbiter",
+  title: "Aionis",
+  description: "Aionis",
 };
 
 export default function RootLayout({

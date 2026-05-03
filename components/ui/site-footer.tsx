@@ -96,7 +96,7 @@ export function SiteFooter() {
           {/* Brand section */}
           <div className="flex flex-col space-y-4">
             <div className="flex items-baseline space-x-1.5">
-              <span className="text-3xl font-bold text-white">Arbiter</span>
+              <span className="text-3xl font-bold text-white">Aionis</span>
               <span className="text-xl text-violet-400">✦</span>
             </div>
             <p className="text-sm leading-relaxed">
@@ -173,14 +173,14 @@ export function SiteFooter() {
 
           {/* Copyright */}
           <p className="text-center md:text-left">
-            &copy; {new Date().getFullYear()} Arbiter. Autonomous capital, on Solana.
+            &copy; {new Date().getFullYear()} Aionis. Autonomous capital, on Solana.
           </p>
         </div>
       </div>
 
       {/* Giant hover-effect wordmark */}
       <div className="-mb-36 -mt-52 hidden h-[30rem] lg:flex">
-        <TextHoverEffect text="Arbiter" className="z-50" />
+        <TextHoverEffect text="Aionis" className="z-50" />
       </div>
 
       <FooterBackgroundGradient />
