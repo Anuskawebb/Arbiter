@@ -916,12 +916,9 @@ function FAQSection() {
 function Navbar() {
   const links = ["Product", "Resources", "How it works"];
   return (
-    <header className="relative z-20 flex items-center justify-between py-6">
-      <a href="#" className="flex items-center gap-0 text-black">
-        <AionisLogo className="-mx-10 h-24 w-auto" priority />
-        <span className="text-[20px] font-bold uppercase tracking-[0.06em] [font-family:var(--font-silkscreen)]">
-          Aionis
-        </span>
+    <header className="relative z-20 flex items-center justify-between py-4">
+      <a href="#" className="-ml-6 flex items-center text-black sm:-ml-12">
+        <AionisLogo className="h-20 w-auto" priority />
       </a>
 
       <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 text-[14px] text-zinc-700 sm:flex">
@@ -1024,8 +1021,8 @@ function SiteFooter() {
 
         {/* Bottom row */}
         <div className="mt-20 flex flex-col items-start gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex items-center gap-0 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
-            <AionisLogo className="-mx-8 h-20 w-auto" />
+          <span className="flex items-center gap-2 text-[18px] font-bold uppercase tracking-[0.06em] text-black [font-family:var(--font-silkscreen)]">
+            <AionisLogo className="h-16 w-auto" />
             Aionis
           </span>
 
